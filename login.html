@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Variáveis de cor */
+    :root {
+      --vermelho: red;
+      --preto: black;
+      --branco: #fff;
+      --bg-claro: #ffffff;
+      --bg-escuro: #1a1a1a;
+      --texto-claro: #000000;
+      --texto-escuro: #ffffff;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      background: linear-gradient(black,rgb(128, 5, 5), black);
+      color: var(--texto-claro);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.modo-escuro {
+      background-color: var(--bg-escuro);
+      color: var(--texto-escuro);
+    }
+
+    header {
+     background: linear-gradient(black,rgb(128, 5, 5));
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1,p{
+        font-size: 2rem;
+    }
+ 
+
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 1rem 0;
+    }
+
+    .controls button {
+      background-color: var(--vermelho);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      margin: 0 0.3rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .controls button:hover {
+      opacity: 0.8;
+    }
+
+    .main {
+      display: flex;
+      max-width: 1000px;
+      margin: 2rem auto;
+      gap: 2rem;
+      padding: 0 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .imagem-lado {
+      flex: 1;
+    }
+
+    .imagem-lado img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .container {
+      flex: 1;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    body.modo-escuro .container {
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button.enviar {
+      width: 100%;
+      margin-top: 1.5rem;
+      padding: 0.7rem;
+      background-color: var(--vermelho);
+      color: rgb(0, 0, 0);
+      border: none;
+      font-size: 1.1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button.enviar:hover {
+      background-color: #a60000;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--preto);
+      color: white;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        flex-direction: column;
+      }
+    }
+  </style>
+  <title>Login</title>
+</head>
+<body>
+
+  <header>
+    <h1>Cadastro</h1>
+    <p>Junta-se ao PERIGO’S</p>
+  </header>
+
+  <div class="controls">
+    <button onclick="alterFonte('+')">A+</button>
+    <button onclick="alterFonte('-')">A-</button>
+    <button onclick="alternarModo()">☀️/🌙</button>
+  </div>
+
+  <div class="main">
+    <!-- Imagem à esquerda -->
+    <div class="imagem-lado">
+      <img src="./imagem/Made with insMind-PERIGO’S STORE.png" alt="Logo da loja">
+      <!-- Substitui o link acima pelo caminho correto da imagem se for local -->
+    </div>
+
+    <!-- Formulário à direita -->
+    <div class="container">
+      <form id="formCadastro">
+        <label for="nome">Nome completo:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required>
+
+        <label for="confirmaSenha">Confirma senha:</label>
+        <input type="password" id="confirmaSenha" name="confirmaSenha" required>
+
+        <button type="submit" class="enviar">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 Clube de Regatas do Fla
+  </footer>
+
+  <script>
+    let tamanhoFonte = 16;
+
+    function alterFonte(acao) {
+      if (acao === '+') {
+        tamanhoFonte += 1;
+      } else if (acao === '-' && tamanhoFonte > 12) {
+        tamanhoFonte -= 1;
+      }
+      document.body.style.fontSize = tamanhoFonte + 'px';
+    }
+
+    function alternarModo() {
+      document.body.classList.toggle('modo-escuro');
+    }
+
+    document.getElementById('formCadastro').addEventListener('submit', function (event) {
+      event.preventDefault();
+      const nome = document.getElementById('nome').value;
+      const email = document.getElementById('email').value;
+      alert('Cadastro enviado com sucesso!');
+    });
+  </script>
+
+</body>
+</html>
